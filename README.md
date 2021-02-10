@@ -1,24 +1,77 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル 
 
-Things you may want to cover:
+| Column   | Type   | Options     |
+| -------- | ------ | ----------- |
+| name     | string | null: false |
+| email    | string | null: false |
+| password | string | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_one :user_profile
+- has_one :buyer
 
-* Configuration
+## user_profiles テーブル
 
-* Database creation
+| Column            | Type       | Options                        |
+| ----------------- | ---------- | ------------------------------ |
+| user              | references | null: false, foreign_key: true |
+| family_name       | string     | null: false                    |
+| first_name        | string     | null: false                    |
+| family_name_spell | string     | null: false                    |
+| first_name_spell  | string     | null: false                    |
+| birth_date        | string     | null: false                    |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :user
 
-* Services (job queues, cache servers, search engines, etc.)
+## items テーブル 
 
-* Deployment instructions
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| user            | references | null: false, foreign_key: true |
+| item_name       | string     | null: false                    |
+| item_info       | string     | null: false                    |
+| delivery_fee    | string     | null: false                    |
+| shipment_source | string     | null: false                    |
+| shipping_time   | string     | null: false                    |
+| price           | string     | null: false                    |
 
-* ...
+
+### Association
+
+- belongs_to :user
+- belongs_to :buyer
+
+## buyers テーブル 
+
+| Column   | Type       | Options                        |
+| -------- | ---------- | ------------------------------ |
+| user     | references | null: false, foreign_key: true |
+| item     | references | null: false, foreign_key: true |
+
+### Association
+
+- has_many :items
+- belongs_to :user
+- has_one :buyer_address
+
+## buyer_addresses テーブル 
+
+| Column       | Type       | Options                        |
+| ------------ | ---------- | ------------------------------ |
+| postal_code  | string     | null: false                    |
+| prefecture   | string     | null: false                    |
+| municipality | string     | null: false                    |
+| address      | string     | null: false                    |
+| phone_number | string     | null: false                    |
+| buyer        | references | null: false, foreign_key: true |
+
+
+### Association
+
+- belongs_to :buyer
