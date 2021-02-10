@@ -4,7 +4,7 @@
 
 | Column             | Type       | Options                   |
 | ------------------ | ---------- | ------------------------- |
-| name               | string     | null: false               |
+| nickname           | string     | null: false               |
 | email              | string     | null: false, unique :true |
 | encrypted_password | string     | null: false               |
 | family_name        | string     | null: false               |
@@ -24,12 +24,12 @@
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
 | user               | references | null: false, foreign_key: true |
-| item_name          | string     | null: false                    |
-| item_info          | text       | null: false                    |
-| item_category_id   | integer    | null: false                    |
-| item_condition_id  | integer    | null: false                    |
+| name               | string     | null: false                    |
+| info               | text       | null: false                    |
+| category_id        | integer    | null: false                    |
+| condition_id       | integer    | null: false                    |
 | delivery_fee_id    | integer    | null: false                    |
-| shipment_source_id | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
 | shipping_time_id   | integer    | null: false                    |
 | price              | integer    | null: false                    |
 
