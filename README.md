@@ -2,32 +2,22 @@
 
 ## users テーブル 
 
-| Column   | Type   | Options     |
-| -------- | ------ | ----------- |
-| name     | string | null: false |
-| email    | string | null: false |
-| password | string | null: false |
+| Column            | Type       | Options                   |
+| ----------------- | ---------- | ------------------------- |
+| name              | string     | null: false               |
+| email             | string     | null: false, unique :true |
+| password          | string     | null: false               |
+| family_name       | string     | null: false               |
+| first_name        | string     | null: false               |
+| family_name_spell | string     | null: false               |
+| first_name_spell  | string     | null: false               |
+| birth_date        | string     | null: false               |
+
 
 ### Association
 
 - has_many :items
-- has_one :user_profile
 - has_one :buyer
-
-## user_profiles テーブル
-
-| Column            | Type       | Options                        |
-| ----------------- | ---------- | ------------------------------ |
-| user              | references | null: false, foreign_key: true |
-| family_name       | string     | null: false                    |
-| first_name        | string     | null: false                    |
-| family_name_spell | string     | null: false                    |
-| first_name_spell  | string     | null: false                    |
-| birth_date        | string     | null: false                    |
-
-### Association
-
-- belongs_to :user
 
 ## items テーブル 
 
