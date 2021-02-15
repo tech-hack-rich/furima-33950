@@ -40,31 +40,31 @@ RSpec.describe Item, type: :model do
       it 'category_idが未選択(id: 0)だと出品できないこと' do
         @item.category_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category Select")
+        expect(@item.errors.full_messages).to include('Category Select')
       end
 
       it 'condition_idが未選択(id: 0)だと出品できないこと' do
         @item.condition_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition Select")
+        expect(@item.errors.full_messages).to include('Condition Select')
       end
 
       it 'delivery_fee_idが未選択(id: 0)だと出品できないこと' do
         @item.delivery_fee_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery fee Select")
+        expect(@item.errors.full_messages).to include('Delivery fee Select')
       end
 
       it 'prefecture_idが未選択(id: 0)だと出品できないこと' do
         @item.prefecture_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture Select")
+        expect(@item.errors.full_messages).to include('Prefecture Select')
       end
 
       it 'shipping_time_idが未選択(id: 0)だと出品できないこと' do
         @item.shipping_time_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping time Select")
+        expect(@item.errors.full_messages).to include('Shipping time Select')
       end
 
       it 'priceがないと出品できないこと' do
@@ -80,7 +80,7 @@ RSpec.describe Item, type: :model do
       end
 
       it 'priceが¥300~¥9,999,999の間でないと出品できないこと(10,000,000円以上のとき)' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price Out of setting range')
       end

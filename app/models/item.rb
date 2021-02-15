@@ -12,12 +12,12 @@ class Item < ApplicationRecord
       validates :shipping_time_id
     end
     validates :price, numericality: { with: /\A[0-9]+\z/, message: 'Half-width number' }
-    validates :price, numericality: {greater_than: 300, less_than: 9999999, message: 'Out of setting range'}
+    validates :price, numericality: { greater_than: 300, less_than: 9_999_999, message: 'Out of setting range' }
   end
-  #activestorageのアソシエーション
+  # activestorageのアソシエーション
   belongs_to :user
   has_one_attached :image
-  #activehashのアソシエーション
+  # activehashのアソシエーション
   belongs_to :category
   belongs_to :condition
   belongs_to :delivery_fee
