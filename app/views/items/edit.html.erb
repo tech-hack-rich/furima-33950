@@ -23,7 +23,7 @@ app/assets/stylesheets/items/new.css %>
         <p>
           クリックしてファイルをアップロード
         </p>
-        <%= f.file_field :hoge, id:"item-image" %>
+        <%= f.file_field :@item.image, id:"item-image" %>
       </div>
     </div>
     <%# /出品画像 %>
@@ -144,8 +144,8 @@ app/assets/stylesheets/items/new.css %>
       <%=link_to 'もどる', item_path(@item), class:"back-btn" %>
     </div>
     <%# /下部ボタン %>
+    <% end %>
   </div>
-  <% end %>
 
   <footer class="items-sell-footer">
     <ul class="menu">
