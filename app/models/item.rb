@@ -14,8 +14,11 @@ class Item < ApplicationRecord
     validates :price, numericality: { with: /\A[0-9]+\z/, message: 'Half-width number' }
     validates :price, numericality: { greater_than: 300, less_than: 9_999_999, message: 'Out of setting range' }
   end
-  # activestorageのアソシエーション
+
+  # アソシエーション
   belongs_to :user
+  has_many :orders
+  # activestorageのアソシエーション
   has_one_attached :image
   # activehashのアソシエーション
   belongs_to :category
