@@ -17,7 +17,7 @@ class Item < ApplicationRecord
 
   # アソシエーション
   belongs_to :user
-  has_many :orders
+  has_one :order
   # activestorageのアソシエーション
   has_one_attached :image
   # activehashのアソシエーション

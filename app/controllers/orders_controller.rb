@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :user_match
   before_action :item_find
 
   def index
@@ -20,7 +21,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order_form).permit(:postal_code, :prefecture_id, :municipality, :address, 
+    params.require(:order_form).permit(:postal_code, :prefecture_id, :municipality, :address,
                                        :building_name, :phone_number).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
   end
 
@@ -36,4 +37,10 @@ class OrdersController < ApplicationController
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
   end
+  
+  def user_match
+    @item = Item.find(params[:id])
+    redirect_to root_path unless current_user == @item.user
+  end
+
 end
