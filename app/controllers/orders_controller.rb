@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :user_match
   before_action :item_find
+  before_action :user_match
   before_action :item_sold?
 
   def index
@@ -40,14 +40,13 @@ class OrdersController < ApplicationController
   end
   
   def user_match
-    @item = Item.find(params[:item_id])
     if current_user == @item.user
       redirect_to root_path
     end
   end
 
   def item_sold?
-    if Order.exists?(item_id: @item.id)
+    if @item.order.present?
       redirect_to root_path
     end
   end

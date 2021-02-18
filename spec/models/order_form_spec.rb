@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe OrderForm, type: :model do
   describe '商品購入機能' do
     before do
-      #bundle exec rspec spec/models/order_form_spec.rb
       user = FactoryBot.create(:user)
       item = FactoryBot.create(:item)
       @order_form = FactoryBot.build(:order_form, user_id: user.id, item_id: item.id)
@@ -21,6 +20,16 @@ RSpec.describe OrderForm, type: :model do
     end
 
     context '商品が購入できないとき' do
+      it 'user_idが空では購入できない' do
+        @order_form.user_id = nil
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空では購入できない' do 
+        @order_form.item_id = nil
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include("Item can't be blank")
+      end
       it 'tokenが空では購入できない' do
         @order_form.token = nil
         @order_form.valid?
@@ -62,6 +71,9 @@ RSpec.describe OrderForm, type: :model do
         expect(@order_form.errors.full_messages).to include('Phone number Input only number')
       end
       it 'phone_numberは12けた以上では購入できない' do
+        @order_form.phone_number = '111111111111'
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include('Phone number Input only number')
       end
     end
   end
