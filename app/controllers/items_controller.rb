@@ -56,6 +56,7 @@ class ItemsController < ApplicationController
   end
 
   def item_sold
+    if @item.order.present?
     if Order.exists?(item_id: @item.id)
       redirect_to root_path
     end
